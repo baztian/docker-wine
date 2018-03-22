@@ -13,7 +13,7 @@ The image has been inspired by
 
 ## Building
 
-    docker build . -t bbowe/wine
+    docker build . -t baztian/wine
 
 ## Running
 
@@ -23,7 +23,7 @@ The image has been inspired by
 
 For more sophisticated usage extending this image is required.
 
-    FROM bbowe/wine
+    FROM baztian/wine
     RUN winetricks -q npp
     ENTRYPOINT wine /wine/drive_c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe
 
