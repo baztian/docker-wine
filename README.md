@@ -17,12 +17,17 @@ The image has been inspired by
 
 ## Running
 
-   docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} jamesnetherton/wine calc.exe
+    docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} jamesnetherton/wine calc.exe
 
 ## Extending
 
 For more sophisticated usage extending this image is required.
 
     FROM bbowe/wine
-    RUN winetricks -q corefonts
-    ENTRY
+    RUN winetricks -q npp
+    ENTRYPOINT wine /wine/drive_c/Program\ Files\ \(x86\)/Notepad++/notepad++.exe
+
+Build and run it.
+
+    docker build . -t wine-npp
+    docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} wine-npp
