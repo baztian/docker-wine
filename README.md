@@ -17,7 +17,7 @@ The image has been inspired by
 
 ## Running
 
-    docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} jamesnetherton/wine calc.exe
+    docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} baztian/wine calc.exe
 
 ## Extending
 
