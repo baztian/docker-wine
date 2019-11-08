@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y \
     apt-transport-https gnupg curl cabextract unzip winbind xvfb wine && \
