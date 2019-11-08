@@ -16,7 +16,7 @@ RUN curl  https://raw.githubusercontent.com/Winetricks/winetricks/master/src/win
 
 ENV USER_PATH /opt/wineuser
 RUN useradd -b /opt -m -d ${USER_PATH} wineuser
-RUN mkdir /wine && chown wineuser.wineuser /wine
+RUN mkdir /wine /Data && chown wineuser.wineuser /wine /Data
 USER wineuser
 ENV WINEPREFIX=/wine
 

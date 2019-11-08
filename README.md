@@ -6,7 +6,7 @@ Docker image to start windows executables via
 Since the `ENTRYPOINT` is sent to /usr/bin/wine, child images need
 only supply a `CMD` to the path of the .exe file to run.
 
-`C:` will get mapped to `/wine/drive_c`.
+`C:` will get mapped to `/wine/drive_c`. Consider mounting `/Data` (`Z:\Data`) to a local folder.
 
 The image has been inspired by
 [jamesnetherton/wine](https://hub.docker.com/r/jamesnetherton/wine/). Thanks!
@@ -31,3 +31,10 @@ Build and run it.
 
     docker build . -t wine-npp
     docker run --rm -it -v /tmp/.X11-unix/:/tmp/.X11-unix/ -e DISPLAY=${DISPLAY} wine-npp
+
+## Development
+
+Tag for a wine version 4.0.2 (`dpkg -l wine`).
+
+    git tag 4.0.2-$(grep -oP 'FROM debian:\K.+' Dockerfile)-$(git rev-parse --short HEAD)
+    git push && git push --tags
