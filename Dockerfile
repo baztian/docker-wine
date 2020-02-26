@@ -22,6 +22,12 @@ RUN curl -O https://dl.winehq.org/wine-builds/winehq.key && \
     apt-get install -y --install-recommends \
      wine-staging-i386=${WINE_VERSION} wine-staging:i386=${WINE_VERSION} winehq-staging:i386=${WINE_VERSION} && \
     apt-get clean
+# https://wiki.winehq.org/Gecko
+RUN mkdir -p /opt/wine-staging/gecko/ && cd /opt/wine-staging/gecko/ && \
+   curl http://dl.winehq.org/wine/wine-gecko/2.47.1/wine-gecko-2.47.1-x86.tar.bz2 | tar xj
+# https://wiki.winehq.org/Mono
+RUN mkdir -p /opt/wine-staging/mono && cd /opt/wine-staging/mono && \
+   curl -O https://dl.winehq.org/wine/wine-mono/4.9.4/wine-mono-4.9.4.msi
 RUN curl https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks > /usr/local/bin/winetricks && \
     chmod +x /usr/local/bin/winetricks
 ENV USER_PATH /opt/wineuser
