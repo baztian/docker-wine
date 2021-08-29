@@ -2,7 +2,7 @@ FROM debian:bullseye
 RUN dpkg --add-architecture i386
 RUN apt-get update && apt-get install -y \
     apt-transport-https gnupg curl cabextract unzip winbind xvfb \
-    wine32 \
+#    wine32 \
     && apt-get clean
 # https://wiki.winehq.org/Debian:
 #RUN curl -LO https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_10/i386/libfaudio0_20.01-0~buster_i386.deb \
@@ -13,15 +13,15 @@ RUN apt-get update && apt-get install -y \
 #    && rm libfaudio* && \
 #    apt-get clean
 
-#ENV WINE_VERSION=4.20~buster
-#RUN curl -O https://dl.winehq.org/wine-builds/winehq.key && \
-#    apt-key add winehq.key && \
-#    rm winehq.key && \
-#    echo deb https://dl.winehq.org/wine-builds/debian/ buster main > /etc/apt/sources.list.d/winehq.list && \
-#    apt-get update && \
-#    apt-get install -y --install-recommends \
-#     wine-staging-i386=${WINE_VERSION} wine-staging:i386=${WINE_VERSION} winehq-staging:i386=${WINE_VERSION} && \
-#    apt-get clean
+ENV WINE_VERSION=6.0.1~bullseye-1
+RUN curl -O https://dl.winehq.org/wine-builds/winehq.key && \
+    apt-key add winehq.key && \
+    rm winehq.key && \
+    echo deb https://dl.winehq.org/wine-builds/debian/ bullseye main > /etc/apt/sources.list.d/winehq.list && \
+    apt-get update && \
+    apt-get install -y --install-recommends \
+     wine-stable-i386=${WINE_VERSION} wine-stable:i386=${WINE_VERSION} winehq-stable:i386=${WINE_VERSION} && \
+    apt-get clean
 # https://wiki.winehq.org/Gecko
 RUN mkdir -p /usr/share/wine/gecko/ && cd /usr/share/wine/gecko/ && \
    curl -O http://dl.winehq.org/wine/wine-gecko/2.47.2/wine-gecko-2.47.2-x86.msi
